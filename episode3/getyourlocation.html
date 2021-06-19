@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Get your location
+        </title>
+    </head>
+<body>
+<script>
+navigator.geolocation.getCurrentPosition(showPosition);
+function showPosition(position) {
+document.write("Latitude: " + position.coords.latitude + "\n" +"Longitude: " + position.coords.longitude);
+document.write("a href='https://www.google.com/maps/place/Mukund+Programming+Tutorials/@"+position.coords.latitude+","+position.coords.longitude+"'> check your location</a>")
+}
+</script>
+</body>
+</html>

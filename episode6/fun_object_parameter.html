@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Function Object parameter</title>
+    </head>
+    <body>
+        <script>
+           function ChangeUser(obj)
+           {
+user.age=obj.age;
+           }
+           let user={
+               id:1,
+               name:"mukund",
+               age:27,
+           }
+           console.log(user)
+           ChangeUser({age:12});
+           console.log(user)
+
+        </script>
+    </body>
+</html>

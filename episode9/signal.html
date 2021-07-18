@@ -1,0 +1,160 @@
+<html>
+    <head>
+        <title>
+            TRAFFIC SIGNAL PROJECT WITH AUTO COUNT DOWN
+        </title>
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+    #tp_img
+    {
+        height: 200px;
+    }
+    .img_cls
+    {
+        height: 100px;
+    }
+    #signal
+    {
+        width: 60px;
+        height: 200px;
+        background: black;
+        margin: auto;
+        padding-top: 5px;
+    }
+    #signal_piler
+    {
+        width: 10px;
+        height: 100px;
+        background: black;
+        margin: auto;
+    }
+    #stop
+    {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: gray;
+        display: block;
+        padding: 5px;
+        margin: 5px;
+    }
+
+    #wait
+    {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: gray;
+        display: block;
+        padding: 5px;
+        margin: 5px;
+    }
+    #go
+    {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: gray;
+        display: block;
+        padding: 5px;
+        margin: 5px;
+    }
+    #signal_piler_holder
+    {
+        width: 200px;
+        background: black;
+        height: 30px;
+        margin: auto;
+    }
+</style>
+    </head>
+
+    <body>
+
+        <h1 class="text text-center text-info">TRAFFIC SIGNAL PROJECT WITH AUTO COUNT DOWN
+        </h1>
+        <hr>
+        <div class="col-sm-12">
+            <div class="col-sm-3">
+<img src="../tp.png" id="tp_img">
+            </div>
+            <div class="col-sm-6">
+
+                <div class="col-sm-12">
+                    <div class="col-sm-4">
+                        <img src="../stop.jpg" onclick="stopTraffic()" class="img_cls">
+
+                    </div>
+                    <div class="col-sm-4">
+                        <img src="../go.jpg" onclick="goTraffic()" class="img_cls">
+                        <h4 id="go_msg"></h4>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <img src="../wait.jpeg" onclick="waitTraffic()" class="img_cls">
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div id="signal">
+                    <span id="stop"></span>
+                    <span id="wait"></span>
+                    <span id="go"></span>
+                </div>
+                <div id="signal_piler">
+
+                </div>
+                <div id="signal_piler_holder">
+
+                </div>
+            </div>
+        </div>
+    </body>
+<script>
+    let time=0;
+    function stopTraffic()
+    {
+       document.getElementById("stop").style.background="red"
+       document.getElementById("wait").style.background="gray"
+       document.getElementById("go").style.background="gray"
+        setInterval(trafficTimer,1000)
+    }
+    function waitTraffic()
+    {
+       document.getElementById("wait").style.background="orange"
+       document.getElementById("stop").style.background="gray"
+       document.getElementById("go").style.background="gray"
+       setInterval(trafficTimer,1000)
+
+    }
+
+    function goTraffic()
+    {
+       document.getElementById("go").style.background="green"
+       document.getElementById("wait").style.background="gray"
+       document.getElementById("stop").style.background="gray"
+    }
+    function trafficTimer()
+    {
+        document.getElementById("go_msg").innerText="Signal will be Green in on count of 5, counter started "+time;
+        if(time>5)
+        {
+            document.getElementById("go_msg").innerText="";
+        }
+        if(time>5)
+        {
+            goTraffic();
+        }
+        time++;
+    }
+</script>
+    </html>

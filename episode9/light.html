@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <title>
+            TRAFFIC SIGNAL PROJECT WITH AUTO COUNT DOWN
+        </title>
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+    #bulb_on
+    {
+display: none;
+background: white;
+    }
+    img{
+height: 200px;
+border-radius: 50%;
+border: 10px solid green;
+    }
+    .light
+    {
+        margin: auto;
+        width: 200px;
+        }
+    #body_element{
+        background: white;
+    }
+    </style>
+        </head>
+    <body id="body_element">
+        <h1 class="text text-center text-danger">
+       Auto Light On Off   Project in JavaScript 
+        </h1>
+        <hr>
+<div class="light">
+        <div>
+           
+                <img src="../off.jpeg" id="bulb_off">
+                <img src="../on.png" id="bulb_on">
+            
+        </div>
+        <hr>
+        <h4 class="text text-center text-danger">
+            Light will be auto On after 6 PM
+        </h4>
+        <hr>
+        <div>
+            <button class="btn btn-danger" onclick="offMe()">Off</button>
+            <button style="float: right;" class="btn btn-info" onclick="onMe()">On</button>
+        </div>
+    </div>
+    </body>
+ <script>
+     let is_auto_mode=true
+     setInterval(autoMode,2000);
+   function offMe()
+     {
+        is_auto_mode=false;
+document.getElementById("bulb_on").style.display="none"
+document.getElementById("bulb_off").style.display="block"
+document.getElementById("bulb_off").style.display="block"
+document.getElementById("body_element").style.background="white"
+     }
+   function onMe()
+     {
+        document.getElementById("bulb_on").style.display="block"
+        document.getElementById("bulb_off").style.display="none"
+        document.getElementById("body_element").style.background="#777"
+
+     }
+     function autoMode()
+     {
+        let hour=new Date().getHours();
+        console.log(hour);
+        if(hour>=7 && is_auto_mode)
+        {
+            onMe();
+        }
+     }
+ </script>
+</html>

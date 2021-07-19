@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <title>
+            TRAFFIC SIGNAL PROJECT WITH AUTO COUNT DOWN
+        </title>
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+    img{
+        height: 200px;
+        border-radius: 50%;
+        border: 10px dotted green;
+    }
+    .light
+    {
+        margin: auto;
+        width: 200px;
+    }
+    #on
+    {
+        display: none;
+    }
+    #body_element
+    {
+        background: white;
+    }
+</style>
+</head>
+<body id="body_element">
+<h1 class="tex text-center text-danger">
+    Auto Light On Off Project in JavaScript
+
+</h1>
+<hr>
+
+<div class="light">
+    <div class="col-sm-12">
+        <img src="../off.jpeg" id="off">
+        <img src="../on.png" id="on">
+        <hr>
+<h4 id="on_off_msg"></h4>
+<hr>
+
+    </div>
+    <div>
+        <button class="btn btn-danger" onclick="offMe()">Off Me</button>
+        <button style="float: right;" onclick="onMe()" class="btn btn-info">On Me</button>
+    </div>
+</div>
+</body>
+<script>
+    let is_auto_mode=true;
+    setInterval(autoMode,1000);
+  function offMe()
+    {
+document.getElementById("off").style.display="block"
+document.getElementById("on").style.display="none"
+document.getElementById("body_element").style.background="white"
+is_auto_mode=false;
+    }
+
+    function onMe()
+    {
+document.getElementById("off").style.display="none"
+document.getElementById("on").style.display="block"
+document.getElementById("body_element").style.background="black"
+    }
+    function autoMode()
+    {
+        let hour=new Date().getHours();
+        hour=hour+10;
+        console.log(hour);
+        if(hour>=18 && is_auto_mode)
+        {
+            onMe();
+        }
+    }
+</script>
+</html>

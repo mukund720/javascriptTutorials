@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>
+            Switch Case
+        </title>
+            <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<h1 style="text-align: center;">Use the switch case statement to select one of 
+    many code blocks to be executed</h1>
+<hr>
+<h2 style="text-align: center;">
+<code style="color: red;font-size: 80px;">+ - * / </code> Operation using switch case
+</h2>
+<hr>
+<div class="col-sm-12">
+    <div class="col-sm-4">
+        <input id="num1" oninput="calculate()" placeholder="Enter num1">
+        <hr>
+        <input id="num2" oninput="calculate()" placeholder="Enter num2">
+
+    </div>
+    <div class="col-sm-4">
+        <input id="operator" oninput="calculate()" placeholder="Enter operator">
+
+    </div>
+    <div class="col-sm-4">
+        <input id="result" placeholder="RESULT">
+
+    </div>
+</div>
+</body>
+
+<script>
+    function calculate()
+    {
+    let operator=document.getElementById("operator").value;
+    let num1=Number(document.getElementById("num1").value);
+    let num2=Number(document.getElementById("num2").value);
+    switch(operator)
+    {
+        case "+":
+        document.getElementById("result").value=num1+num2;
+        break;
+        case "-":
+        document.getElementById("result").value=num1-num2;
+        break;
+
+        case "*":
+        document.getElementById("result").value=num1*num2;
+        break;
+
+        case "/":
+        document.getElementById("result").value=num1/num2;
+        break;
+
+        default:
+        document.getElementById("result").value=0;
+
+
+    }
+}
+</script>
+</html>

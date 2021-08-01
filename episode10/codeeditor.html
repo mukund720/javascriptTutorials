@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>
+           Live CoDE Editor
+        </title>
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+    textarea
+    {
+        min-height: 150px;
+        min-width: 100%;
+    }
+    body
+    {
+        /* background: black; */
+    }
+</style>
+</head>
+<body>
+   <h1 class="text text-center text-info">Live Code Editor Project In HTML , CSS , JS</h1>
+   <hr>
+    <div class="col-sm-12">
+        <div class="col-sm-3">
+            <div class="col-sm-12">
+                <h1 class="text text-danger">HTML Editor</h1>
+                <hr>
+
+                <textarea id="htmlInput" oninput="showOutput()"></textarea>
+               
+            </div>
+            <div class="col-sm-12">
+                <br>
+                <h1 class="text text-danger">CSS Editor</h1>
+
+                <hr>
+                <textarea id="cssInput" oninput="showOutput()"></textarea>
+               
+            </div>
+            <!-- <div class="col-sm-12">
+                <textarea id="jsInput" oninput="showOutput()"></textarea>
+
+            </div> -->
+        </div>
+        <div class="col-sm-9">
+            <h1 class="text text-success">Output</h1>
+            <hr>
+
+            <div id="editorOutput" style="min-height: 400px;min-width: 100%;border: 10px solid;"></div>
+        </div>
+    </div>
+</body>
+<script>
+   function  showOutput()
+    {
+        let html_input=document.getElementById("htmlInput").value;
+        let css_input="<style>"+document.getElementById("cssInput").value+"</style>"
+        // let js_input="<scri"+"pt>"+document.getElementById("jsInput").value+"</scri"+"pt>";
+        document.getElementById("editorOutput").innerHTML=css_input+""+html_input;
+
+
+    }
+</script>
+</html>

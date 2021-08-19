@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>
-            Reg. Form Using local storage js-part2
+            Login Form Using local storage js-part3
         </title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,12 +12,8 @@
       <body>
       
       <div class="container">
-        <h2>Reg. Form</h2>
+        <h2>Login Form</h2>
         <form action="#">
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" class="form-control" id="name" placeholder="Enter email" name="email">
-              </div>
 
           <div class="form-group">
             <label for="email">Email:</label>
@@ -34,28 +30,33 @@
       
       </body>
       <script>
+         let name=localStorage.getItem('name')?localStorage.getItem('name'):''
+        console.log(name);
+        if(name!='')
+        {
+          alert('Please visit profile');
+          window.location.href="profile.html";
+        }
 function saveData()
 {
-let name,email,psw;
-name=document.getElementById("name").value;
+let email,psw;
 email=document.getElementById("email").value;
 
 psw=document.getElementById("psw").value;
 
 let user_records=new Array();
 user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[]
-if(user_records.some((v)=>{return v.email==email}))
+if(user_records.some((v)=>{return v.email==email && v.psw==psw}))
 {
-  alert("duplicate data");
+  alert("Login Pass");
+  let current_user=user_records.filter((v)=>{return v.email==email && v.psw==psw})[0]
+ localStorage.setItem('name',current_user.name);
+ localStorage.setItem('email',current_user.email);
+  window.location.href="profile.html"
 }
 else
 {
-  user_records.push({
-  "name":name,
-  "email":email,
-  "psw":psw
-})
-localStorage.setItem("users",JSON.stringify(user_records));
+  alert('Login Fail');
 }
 
 }

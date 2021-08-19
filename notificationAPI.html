@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>
+      Notification API
+    </title>
+  </head>
+  <body>
+    <h1>
+      How to show Desktop Notification in JS
+    </h1>
+    <hr>
+
+  </body>
+  <script>
+   
+    let perm=Notification.permission;
+    // default, granted, denied
+    console.log(perm);
+    if(!window.Notification)
+    {
+      alert('Your system does not support notification');
+    }
+    else
+    {
+      if(Notification.permission==='granted')
+      {
+        // show notification
+        var greeting1=new Notification("Notification",{
+              body:'How r u',
+              icon:""
+            })
+            greeting1.addEventListener("click",function(){
+              window.open("https://www.google.com")
+            })
+      }
+      else
+      {
+        Notification.requestPermission().then(function(p)
+        {
+          console.log(p);
+          if(p==='granted')
+          {
+            // show notification
+alert('hey permision taken')
+            var greeting=new Notification("Notification",{
+              body:'How r u',
+              icon:""
+            })
+            greeting.addEventListener("click",function(){
+              window.open("https://www.google.com")
+            })
+          }
+          else
+          {
+            alert('User Blocked');
+
+          }
+        }
+        )
+      }
+    }
+  </script>
+</html>

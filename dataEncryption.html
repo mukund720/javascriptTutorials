@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <title>
+            Data Encryption
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      </head>
+      <body>
+      
+      <div class="container">
+        <div class="col-sm-6" style="border: 1px solid gray;">
+        <h2>Encoder Form</h2>
+        <form action="#">
+
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="psw" placeholder="Enter password" name="pwd">
+          </div>
+         
+          <button type="button" onclick="saveData()" id="save_btn" class="btn btn-default">Submit</button>
+        </form>
+      </div>
+      <div class="col-sm-6" style="border: 1px solid gray;">
+        <h2 style="text-align: center;">Users Table</h2>
+        <div class="row">
+          <div class="col-sm-6" style="background-color: #38b7ff;padding: 10px;">Email</div>
+          <div class="col-sm-6" style="background-color: #ff914d;padding: 10px;">Password</div>
+
+        </div>
+        <div id="showUsers"></div>
+      </div>
+      </div>
+      
+      </body>
+      <script>
+        showData();
+function saveData()
+{
+let email,psw;
+email=btoa(document.getElementById("email").value);
+
+psw=btoa(document.getElementById("psw").value);
+
+let user_records=new Array();
+user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[]
+if(user_records.some((v)=>{return v.email==email}))
+{
+  alert("duplicate data");
+}
+else
+{
+  user_records.push({
+  "email":email,
+  "psw":psw
+})
+localStorage.setItem("users",JSON.stringify(user_records));
+}
+showData();
+}
+
+function showData()
+{
+  document.getElementById("showUsers").innerHTML="";
+  let user_records=new Array();
+user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[]
+  if(user_records)
+  {
+    for(let i=0;i<user_records.length;i++)
+    {
+      let addDiv=document.createElement('div');
+  addDiv.className="row";
+  addDiv.innerHTML='<div class="col-sm-6" style="padding: 10px;">'+user_records[i].email+'</div><div class="col-sm-6" style="padding: 10px;">'+user_records[i].psw+'</div>';
+  document.getElementById("showUsers").appendChild(addDiv);
+
+    }
+  }
+  }
+          </script>
+      </html>
+      

@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <title>
+           Todo List project in javascript
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      </head>
+      <body>
+      
+      <div class="container">
+        <h2 style="text-align: center;background-color: yellow;">To-Do List</h2>
+
+        <div class="col-sm-12" style="padding-top:10px;border: 1px solid gray;background-color: azure;">
+        <form action="#">
+            <div class="form-group">
+                <input type="text" style="width: 900px;display: inline;" class="form-control" id="task_name" placeholder="Enter Task Name" name="task_name">
+                <button type="button" style="width: 80px;display: inline;" onclick="saveData()" id="save_btn" class="btn btn-success">Submit</button>
+                <button type="button" style="width: 80px;display: inline;" onclick="clearData()" id="clear_btn" class="btn btn-danger">ClearAll</button>
+
+              </div>
+
+          </form>
+      </div>
+      <div class="col-sm-12" style="margin-top:10px;border: 1px solid gray;">
+        <div id="showUsers"></div>
+      </div>
+      </div>
+      
+      </body>
+      <script>
+        showData();
+function saveData()
+{
+let task_name;
+task_name=document.getElementById("task_name").value;
+
+let task_records=new Array();
+task_records=JSON.parse(localStorage.getItem("toDoList"))?JSON.parse(localStorage.getItem("toDoList")):[]
+if(task_records.some((v)=>{return v.task_name==task_name}))
+{
+  alert("duplicate data");
+}
+else
+{
+  task_records.push({
+  "task_name":task_name,
+  "status":'0',
+})
+localStorage.setItem("toDoList",JSON.stringify(task_records));
+}
+showData();
+}
+
+function showData()
+{
+  document.getElementById("showUsers").innerHTML="";
+  let task_records=new Array();
+task_records=JSON.parse(localStorage.getItem("toDoList"))?JSON.parse(localStorage.getItem("toDoList")):[]
+  if(task_records)
+  {
+    for(let i=0;i<task_records.length;i++)
+    {
+      let addDiv=document.createElement('div');
+  addDiv.className="row";
+  let status=task_records[i].status=="1"?true:false;
+  if(status)
+  {
+    addDiv.innerHTML='  <div class="col-sm-12" style="padding: 10px;color:red;"><input type="checkbox" checked /> '+task_records[i].task_name+' <button class="btn btn-info" onclick="deleteData('+i+')">Delete</button> <button class="btn btn-warning" onclick="setStatus('+i+',0)">Un-Mark</button></div>';
+
+  }
+  else
+  {
+    addDiv.innerHTML='  <div class="col-sm-12" style="padding: 10px;color:red;"><input type="checkbox" /> '+task_records[i].task_name+' <button class="btn btn-info" onclick="deleteData('+i+')">Delete</button> <button class="btn btn-success" onclick="setStatus('+i+',1)">Mark Done</button></div>';
+
+  }
+  document.getElementById("showUsers").appendChild(addDiv);
+
+    }
+  }
+  }
+  function setStatus(index,status_type)
+  {
+    let task_records=new Array();
+task_records=JSON.parse(localStorage.getItem("toDoList"))?JSON.parse(localStorage.getItem("toDoList")):[]
+task_records[index].status=status_type;
+localStorage.setItem("toDoList",JSON.stringify(task_records));
+
+showData();
+  }
+         function deleteData(index)
+         {
+          let task_records=new Array();
+task_records=JSON.parse(localStorage.getItem("toDoList"))?JSON.parse(localStorage.getItem("toDoList")):[]
+task_records.splice(index,1)
+localStorage.setItem("toDoList",JSON.stringify(task_records));
+this.showData();
+         }
+         function clearData()
+         {
+           window.localStorage.clear();
+           this.showData();
+         }
+         </script>
+      </html>
+      

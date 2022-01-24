@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <tile>ChartJS Example</tile>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    </head>
+    <body>
+        <canvas id="myChart" style="width: 100%;max-width: 300px;"></canvas>
+        <canvas id="myChart1" style="width: 100%;max-width: 300px;"></canvas>
+        <canvas id="myChart2" style="width: 100%;max-width: 300px;"></canvas>
+
+    </body>
+    <script>
+        let courses=["BCA","MCA","BA","MA","B.Tech"]// x ax
+        let students=[90,100,30,40,35] //y ax
+        let barColors=["red","yellow","blue","green","orange"]
+        new Chart("myChart",{
+            type:'bar',
+            data:{
+                labels:courses,
+                datasets:[{
+                    backgroundColor:barColors,
+                    data:students,
+                }]
+            },
+            options:{
+                legends:{display:false},
+                title:{display:true,
+                text:'Students Data'}
+
+            }
+        });
+        new Chart("myChart1",{
+            type:'line',
+            data:{
+                labels:courses,
+                datasets:[{
+                    backgroundColor:barColors,
+                    data:students,
+                }]
+            },
+            options:{
+                legends:{display:false},
+                title:{display:true,
+                text:'Students Data'}
+
+            }
+        });
+        new Chart("myChart2",{
+            type:'pie',
+            data:{
+                labels:courses,
+                datasets:[{
+                    backgroundColor:barColors,
+                    data:students,
+                }]
+            },
+            options:{
+                legends:{display:false},
+                title:{display:true,
+                text:'Students Data'}
+
+            }
+        });
+   
+   </script>
+</html>

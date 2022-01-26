@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <tile>Web Speech API</tile>
+    </head>
+    <body>
+        <h1>News Content</h1>
+        <textarea id="newContent" style="width: 400px;height: 400px;">
+        </textarea>
+        <button onclick="speakFunc()">Speak</button>
+        <script>
+function speakFunc()
+{
+    // alert("hey")
+    let content=document.getElementById("newContent").value;
+    console.log(content)
+    if(content==''||content==undefined)
+    {
+        alert('content is blank');
+        return false;
+    }
+    var msg=new SpeechSynthesisUtterance(content);
+    window.speechSynthesis.speak(msg);
+}
+        </script>
+    </body>
+</html>

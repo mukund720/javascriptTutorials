@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Web Speech API</title>
+    </head>
+    <body>
+        <h1 style="text-align: center;color:red;">News Content</h1>
+        <hr>
+        <textarea id="newsContent" style="width: 90%;height: 300px;"></textarea>
+        <button onclick="speakFunc()">Speak</button>
+        <script>
+            function speakFunc()
+            {
+                let newsContent=document.getElementById("newsContent").value;
+                if(newsContent==''||newsContent==undefined)
+                {
+alert('data is blank');
+return false;
+                }
+                var msg=new SpeechSynthesisUtterance(newsContent);
+                window.speechSynthesis.speak(msg);
+            }
+        </script>
+    </body>
+</html>

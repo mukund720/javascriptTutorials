@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Spread Operator</title>
+    </head>
+    <body>
+        <h2 style="text-align: center;color:red">
+        Deep Copy, Shallow Copy
+        </h2>
+        <hr>
+        <script>
+            let arr1=["RAM","RAHIM","INDIA"]
+            let arr2=[...arr1];
+            arr2.push("Mukund");
+            document.write("ARR1= "+arr1);
+            document.write("<hr>")
+            document.write("ARR2= "+arr2);
+
+            let obj={
+                name:'RAM',
+                mobile:'8677040031',
+                add:{
+                    pin:"844114",
+                    city:'BHAGWANPUR'
+                }
+            }
+            // let obj2={...obj};// shallow copy
+            let obj2={...obj,add:{...obj.add},city:{...obj.add.city}};// deep copy
+            obj2.add.city="Delhi";
+            console.log("obj");
+            console.log(obj);
+            console.log("obj2");
+            console.log(obj2);
+            </script>
+    </body>
+</html>

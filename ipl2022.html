@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>IPL 2022</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+    .logo
+    {
+        max-width: 50px;
+        max-height: 50px;
+    }
+    .vs
+    {
+        border-radius: 50px;
+        width: 50px;
+        height: 50px;
+        border: black;
+        background: #4178f0;
+    padding: 15px;
+    color:white;
+    }
+    .base
+    {
+        color:white;
+        background:#192133;
+    width: 100%;
+    padding: 10px;
+    position: relative;
+    margin-bottom: 12px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 24%);
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 24%);
+    }
+    h1{
+        font-size: 20px;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    padding: 30px 0 16px;
+    }
+    h3
+    {
+        color: white;
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 15px;
+    }
+</style>
+</head>
+<body>
+    <div class="container" id="score">
+        
+    </div>
+
+    <script>
+        let payload={methodtype: 3,
+client: 2,
+sport: 1,
+league: 0,
+timezone: 0530,
+language: 'en',
+daterange: 01032022-31032022}
+  $.get("https://sportzsdk.hotstar.com/schedules/?methodtype=3&client=2&sport=1&league=0&timezone=0530&language=en&daterange=01042022-30042022", function(data, status){
+  console.log(status)
+    if(status=='success')
+   {
+     let list=[];
+     list=data.matches?data.matches:[]
+     list=list.filter((v)=>{return v.tour_id=='329'})
+     console.log(list)
+     if(list.length>0)
+     {
+        let str=''
+         for(let i of list)
+         {
+             str+="<div class='col-sm-12 base'>    <h1 class='text text-center'>"+i.start_date+"</h1>";
+                str+="<div class='col-sm-5'>"+i.participants[0].name+" <img class='logo' src='"+i.participants[0].logo_url+"'></div>";
+                str+="<div class='col-sm-2'><h3>"+i.tour_name+", "+i.event_name+"</h3><div class='vs'>VS</div><h3>"+i.event_sub_status+"</h3></div>";
+                str+="<div class='col-sm-5'> <img class='logo' src='"+i.participants[1].logo_url+"'> "+i.participants[1].name+"</div>";
+                str+="</div>"
+         }
+         console.log(str)
+document.getElementById('score').innerHTML=str;
+     }  
+   }
+  });
+
+    </script>
+    </body>
+    </html>

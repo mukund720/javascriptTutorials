@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Local Vs Session Storage</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+ 
+</head>
+<body>
+    <input type="text" id="user_name" placeholder="enter user name">
+    <br>
+    <button onclick="saveLocal()">Save Local</button>
+    <button onclick="saveSession()">Save Session</button>
+
+   <script>
+function saveLocal()
+{
+    let user_name=document.getElementById("user_name").value
+
+    localStorage.setItem('user_name',user_name)
+}
+
+function saveSession()
+{
+    let user_name=document.getElementById("user_name").value
+
+    sessionStorage.setItem('user_name_session',user_name)
+}
+    </script>
+</body>
+</html>

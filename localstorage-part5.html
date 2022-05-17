@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <title>
+            Profile Using local storage js-part5
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      </head>
+      <body>
+<h1 class="text-info text-center">Profile</h1>
+<hr>
+<div class="container">
+    <div class="col-sm-12">
+        <div class="col-sm-6">
+            <div class="row">
+                <h3 class="text-info">Gender</h3>
+                <input type="radio" name="gen" value="Male"> Male<br>
+                <input type="radio" name="gen" value="Female">Female
+            </div>
+            <div class="row">
+                <h3 class="text-info">Qualification</h3> 
+                <input type="checkbox" id="BTech" value="B.Tech">B.Tech <br>
+                <input type="checkbox" id="diploma" value="Diploma">Diploma 
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row">
+                <h3 class="text-info">Country</h3> 
+                <select id="country">
+                    <option value="india">India</option>
+                    <option value="nepal">Nepal</option>
+                </select>
+            </div>
+            <div class="row">
+                <h3 class="text-info">Description</h3>
+                <textarea id="desc" style="min-width: 200px;min-height:100px;">
+
+                </textarea>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <button onclick="SaveProfile()" class="btn btn-success">Submit</button>
+    </div>
+</div>
+<script>
+    function SaveProfile()
+    {
+        var gender=document.querySelector('input[name="gen"]:checked').value;
+        var btech=document.getElementById('BTech').checked?document.getElementById('BTech').value:'';
+        var diploma=document.getElementById('diploma').checked?document.getElementById('diploma').value:'';
+        var country=document.getElementById('country').value;
+        var desc=document.getElementById('desc').value;
+        console.log(gender,btech,diploma,country,desc)
+        let profile={
+            gender:gender,
+            btech:btech,
+            diploma:diploma,
+            country:country,
+            description:desc
+        }
+        console.log(profile);
+        localStorage.setItem('profile_data',JSON.stringify(profile))
+        
+    }
+</script>
+
+      </body>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Battery Management</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <h1>
+        Battery Management
+    </h1>
+    <hr>
+    <p id="status"></p>
+    <script>
+        function getStatus()
+        {
+            navigator.getBattery().then((bat)=>{
+                console.log(bat)
+                var pattern="Charging Level:-"+bat.level+"<br> Is On Charging:- "+bat.charging;
+                document.getElementById('status').innerHTML=pattern
+            })
+        }
+        getStatus();
+    </script>
+</body>
+</html>

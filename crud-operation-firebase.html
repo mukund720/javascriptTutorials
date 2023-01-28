@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript Firebase Tutorial - How to Read and Write Data</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <h2 style="text-align: center;" class="text text-success">JavaScript Firebase Tutorial - How to Read and Write Data
+    </h2>
+    <div class="container">
+        <div class="col-sm-6" style="border: 1px solid gray; border-radius: 8px;">
+            <h2>Reg. Form</h2>
+            <form action="#">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter email" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" id="psw" placeholder="Enter password" name="pwd">
+                </div>
+
+                <button type="button" onclick="createData()" id="save_btn" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+        <div class="col-sm-6" style="border: 1px solid gray;border-radius: 8px;">
+            <h2 style="text-align: center;">Users Table</h2>
+            <div class="row">
+                <div class="col-sm-3" style="background-color: #ffdc5c;padding: 10px;">Name</div>
+                <div class="col-sm-3" style="background-color: #38b7ff;padding: 10px;">Email</div>
+                <div class="col-sm-3" style="background-color: #ff914d;padding: 10px;">Password</div>
+                <div class="col-sm-3" style="background-color: #ff914d;padding: 10px;">Action</div>
+
+            </div>
+            <div id="showUsers"></div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+    <script>
+        // Initialize Firebase
+        const firebaseConfig = {
+            databaseURL: "https://jankariwalla-1b3c0-default-rtdb.firebaseio.com/",
+            apiKey: "AIzaSyBMio4Hh1GRw4xWL-lR4gEwA48lnCU7mC0",
+            authDomain: "jankariwalla-1b3c0.firebaseapp.com",
+            projectId: "jankariwalla-1b3c0",
+            storageBucket: "jankariwalla-1b3c0.appspot.com",
+            messagingSenderId: "1033767654976",
+            appId: "1:1033767654976:web:f03ff4d6f7358e7d34f1a5",
+            measurementId: "G-1EKTNYT59F"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        // Create a new data
+        function createData() {
+            const newData = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                psw: document.getElementById("psw").value
+
+            };
+
+            firebase
+                .database()
+                .ref("users/")
+                .push(newData);
+        }
+
+        // Read data
+        firebase
+            .database()
+            .ref("users/")
+            .on("value", function (snapshot) {
+
+                document.getElementById("showUsers").innerHTML = "";
+                snapshot.forEach(function (childSnapshot) {
+                    var key = childSnapshot.key;
+                    var childData = childSnapshot.val();
+                    let addDiv = document.createElement('div');
+                    addDiv.className = "row";
+                    addDiv.innerHTML =
+                        '  <div class="col-sm-3" style="padding: 10px;    word-break: break-word;">' +
+                        childData.name +
+                        '</div><div class="col-sm-3" style="padding: 10px;    word-break: break-word;">' +
+                        childData.email +
+                        '</div><div class="col-sm-3" style="padding: 10px;">' + childData.psw +
+                        '</div> <div class="col-sm-3"> <button type="button"  class="btn btn-info" onclick="updateData()">Update</button><button type="button" class="btn btn-danger" onclick="deleteData()">Delete</button></div>';
+                    document.getElementById("showUsers").appendChild(addDiv);
+                });
+
+            });
+    </script>
+</body>
+
+</html>
